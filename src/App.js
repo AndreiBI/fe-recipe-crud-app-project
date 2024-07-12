@@ -8,7 +8,14 @@ function App() {
     const [recipes, setRecipes] = useState(RecipeData);
 
     const createRecipe = (newRecipe) => {
-        setRecipes([...recipes, newRecipe]);
+        // Check if the newRecipe object is not empty
+        const isNotEmpty = Object.values(newRecipe).some((value) => value.trim() !== "");
+
+        if (isNotEmpty) {
+            setRecipes([...recipes, newRecipe]);
+        } else {
+            console.log("Cannot create an empty recipe");
+        }
     };
 
     const deleteRecipe = (indexToDelete) => {
